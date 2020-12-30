@@ -15,9 +15,12 @@ const packageDef = protoLoader.loadSync(PROTO_PATH, {
 const helloServiceProto = grpc.loadPackageDefinition(packageDef).HelloService;
 
 const grpcServer = new grpc.Server();
+
 grpcServer.addService(helloServiceProto.service, {
+    healthCheck: health,
     sayHello: hello,
 });
+
 grpcServer.bindAsync(SERVER_URI, grpc.ServerCredentials.createInsecure(), () => {
     grpcServer.start();
     console.log(`gRPC server is running on port ${PORT}`);
@@ -33,5 +36,12 @@ function hello(call, callback) {
 
     callback(null, {
         message: `Hello, ${to}`
+    });
+}
+
+function health(call, callback) {
+
+    callback(null, {
+        message: `server is running.`
     });
 }

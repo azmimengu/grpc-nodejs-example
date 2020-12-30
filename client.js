@@ -22,3 +22,8 @@ grpcClient.sayHello({ yourName: 'edriyın' }, (err, { message }) => {
 
     console.log(message);
 });
+
+grpcClient.healthCheck(null, (err, res) => {
+    console.log('err' ,err);
+    console.log('res' ,res);
+})
