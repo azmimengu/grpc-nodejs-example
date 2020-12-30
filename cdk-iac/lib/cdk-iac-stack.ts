@@ -41,6 +41,10 @@ export class CdkGrpcStack extends cdk.Stack {
       securityGroup: securityGroup,
       instanceName: 'grpc-app-instance',
     });
+    
+    instance.role.addManagedPolicy({
+      managedPolicyArn: 'arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess'
+    });
 
     // we will create our load balancer on AWS Console. 
     // There is no support about gRPC load balancer creation with CDK or CloudFormation
