@@ -15,4 +15,18 @@ node server.js
 node client.js
 ```
 
+### Server Side (AWS Stack) ###
+In this project, we used [AWS CDK](https://aws.amazon.com/tr/cdk/) to setup our AWS Stack. Please make sure to run your `cdk` scripts under `cdk-iac` directory.
+
+First, you need to change account id definition with yours inside `cdk-iac.ts` file which is located under `bin` folder.
+
+To synthesize (transforms TS to CFN)
+```bash
+cdk synth CdkGrpcStack
+```
+
+To deploy your stack
+```bash
+cdk deploy CdkGrpcStack
+```
 
